@@ -114,7 +114,7 @@ WHERE EXISTS (
 );
                                
                                
-                               -question 4 sid's of supplier supplied all parts (Both via nested NOT EXISTS & NOT EXISTS with Except)-
+                               --question 4 sid's of suppliersupplied all parts (Both via nested NOT EXISTS & NOT EXISTS with Except) --
                               select c.sid
 from catalog c
 where NOT EXISTS (
@@ -128,9 +128,19 @@ where NOT EXISTS (
         and c2.pid = p.pid
     ));
                                
-      -question 5. Retrive the sid's of the supplier whose rating> 10 and supplied every red part-
+      --question 5. Retrive the sid's of the supplier whose rating> 10 and supplied every red part-
+
+     select s.sid 
+      from supplies as s
+      where rating > 10 and 
+      NOt exists(select pid 
+      from parts p 
+      where color red 
+      and Not exists 
+      (select c.sid 
+      from Catalog c 
+      where 
+      c.sid = s.sid and c.pid = p.pid ));
       -question 6 query comparison with the NUll (IS| IS NOT clause)-
       -Question 7 Query region operation (LIKE\NOT LIKE)-
                                
-                               
-     see the question and give me the perfect solution till question 4 
